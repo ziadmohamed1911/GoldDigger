@@ -1,5 +1,5 @@
 import http from "node:http"
-import { handleRequest } from "./handlers/requestHandler.js"
+import { handleRequest } from "../handlers/requestHandler.js"
 
 const PORT = 8000
 

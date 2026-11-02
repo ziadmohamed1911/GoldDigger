@@ -13,9 +13,8 @@
   "license": "ISC",
   "author": "Ziad Mohamed",
   "type": "module",
-  "main": "local-server.js",
   "scripts": {
-    "start": "node local-server.js",
-    "dev": "nodemon local-server.js"
+    "start": "node dev/local-server.js",
+    "dev": "nodemon dev/local-server.js"
   }
 }
