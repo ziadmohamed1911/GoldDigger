@@ -1,5 +1,5 @@
 import http from "http"
-import { serveStatic } from "./utils/ServeStatic.js"
+import { serveStatic } from "./utils/serveStatic.js"
 import { handlePrice } from "./handlers/routeHandlers.js"
 
 const PORT = 8000
