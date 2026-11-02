@@ -6,7 +6,6 @@ import { getContentType } from "./getContentType.js"
 export async function serveStatic(req, res, basedir){
     const pulbicDir = path.join(basedir, "public")
     const filePath = path.join(pulbicDir, req.url === "/" ? "index.html" : req.url)
-    const errorPath = path.join(pulbicDir, "404.html")
     const ext = path.extname(filePath)
     const contentType = getContentType(ext)
     if(!filePath.startsWith(pulbicDir)){
@@ -16,7 +15,11 @@ export async function serveStatic(req, res, basedir){
         const content = await fs.readFile(filePath)
         sendResponse(res, 200, contentType, content)
     }catch(err){    
-        const errorContent = await fs.readFile(errorPath)
-        sendResponse(res, 404, "text/html", errorContent)
+       if(err.code === "ENOENT"){
+        const content = await fs.readFile(path.join(pulbicDir, "404.html"))
+        sendResponse(res, 404, "text/html", content)
+       }else{
+        sendResponse(res, 500, "text/html", `<html><h1>Server Error: ${err}</h1></html`)
+       }
     }
 }

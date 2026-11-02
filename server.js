@@ -2,6 +2,7 @@ import http from "http"
 import { serveStatic } from "./utils/ServeStatic.js"
 import { sendResponse } from "./utils/sendResponse.js"
 import { handlePrice } from "./handlers/routeHandlers.js"
+import path from "path"
 
 const PORT = 8000
 const __dirname = import.meta.dirname
