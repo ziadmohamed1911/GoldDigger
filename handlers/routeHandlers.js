@@ -1,23 +1,11 @@
 export async function handlePrice(req, res) {
-    res.writeHead(200, {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache, no-transform",
-        "Connection": "keep-alive"
-    })
-
-    let currentPrice = 125.52
-
-    const sendPrice = () => {
-        currentPrice = Math.max(1, currentPrice + (Math.random() - 0.5) * 0.5)
-        const price = Math.floor(currentPrice * 100) / 100
-        res.write(`data: ${JSON.stringify({ event: "price-update", price })}\n\n`)
-    }
-
-    sendPrice()
-    const intervalId = setInterval(sendPrice, 3000)
-
-    req.on("close", () => {
-        clearInterval(intervalId)
-        res.end()
-    })
+    const currentPrice =  125.52
+    res.setHeader("Content-type", "text/event-stream")
+    res.setHeader("Cache-Control", "no-cache")
+    res.setHeader("Connection", "keep-alive")
+    setInterval(() => {
+        const rawPrice = currentPrice + (Math.random() -0.5) * 10
+        const priceUpdate = Math.floor(rawPrice * 100)/100
+        res.write(`data:${JSON.stringify({event: "price-update", price: priceUpdate})}\n\n`)
+    }, 3000)
 }
