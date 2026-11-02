@@ -1,20 +1,8 @@
-import http from "http"
-import { serveStatic } from "./utils/serveStatic.js"
-import { handlePrice } from "./handlers/routeHandlers.js"
+import http from "node:http"
+import { handleRequest } from "./handlers/requestHandler.js"
 
 const PORT = 8000
-const __dirname = import.meta.dirname
 
-
-const server = http.createServer(async (req,res)=>{
-    if(req.url.startsWith("/api/handle-price")){
-        if(req.url === "/api/handle-price"){
-            await handlePrice(req, res)
-        }    
-
-    }else if(req.url.startsWith("/")){
-        await serveStatic(req, res, __dirname) 
-    }
+http.createServer(handleRequest).listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
 })
-
-server.listen(PORT, () => console.log(`Server running at port: ${PORT}`))
