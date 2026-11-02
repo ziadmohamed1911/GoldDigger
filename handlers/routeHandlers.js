@@ -7,5 +7,5 @@ export async function handlePrice(req, res) {
         const rawPrice = currentPrice + (Math.random() -0.5) * 10
         const priceUpdate = Math.floor(rawPrice * 100)/100
         res.write(`data:${JSON.stringify({event: "price-update", price: priceUpdate})}\n\n`)
-    }, 1500)
+    }, 3000)
 }

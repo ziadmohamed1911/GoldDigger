@@ -1,8 +1,6 @@
 import http from "http"
 import { serveStatic } from "./utils/ServeStatic.js"
-import { sendResponse } from "./utils/sendResponse.js"
 import { handlePrice } from "./handlers/routeHandlers.js"
-import path from "path"
 
 const PORT = 8000
 const __dirname = import.meta.dirname
@@ -10,9 +8,12 @@ const __dirname = import.meta.dirname
 
 const server = http.createServer(async (req,res)=>{
     if(req.url.startsWith("/api/handle-price")){
-        await handlePrice(req, res)
+        if(req.url === "/api/handle-price"){
+            await handlePrice(req, res)
+        }    
+
     }else if(req.url.startsWith("/")){
-        await serveStatic(req, res, __dirname)
+        await serveStatic(req, res, __dirname) 
     }
 })
 
