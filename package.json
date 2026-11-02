@@ -1,7 +1,7 @@
 {
   "name": "golddigger",
   "version": "1.0.0",
-  "description": "An app that can help you see the current gold prices and invest on amount of gold ",
+  "description": "An app that can help you see the current gold prices and invest on amount of gold",
   "homepage": "https://github.com/ziadmohamed1911/GoldDigger#readme",
   "bugs": {
     "url": "https://github.com/ziadmohamed1911/GoldDigger/issues"
@@ -13,9 +13,9 @@
   "license": "ISC",
   "author": "Ziad Mohamed",
   "type": "module",
-  "main": "server.js",
+  "main": "local-server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node local-server.js",
+    "dev": "nodemon local-server.js"
   }
 }
